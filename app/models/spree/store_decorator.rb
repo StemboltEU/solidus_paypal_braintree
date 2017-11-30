@@ -6,6 +6,6 @@ Spree::Store.class_eval do
   private
 
   def build_default_configuration
-    build_braintree_configuration
+    build_braintree_configuration if SolidusPaypalBraintree::Configuration.table_exists?
   end
 end
