@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'spree_core', '~> 2.4.0'
   s.add_dependency 'braintree', '~> 2.65'
   s.add_dependency 'activemerchant', '~> 1.44'
+  s.add_dependency 'active_utils'
 
   s.add_development_dependency 'capybara'
   s.add_development_dependency 'capybara-screenshot'
