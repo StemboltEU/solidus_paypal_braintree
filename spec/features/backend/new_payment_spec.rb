@@ -3,7 +3,7 @@ require 'spree/testing_support/order_walkthrough'
 
 shared_context "checkout setup" do
   let(:braintree) { new_gateway(active: true) }
-  let!(:gateway) { create :payment_method }
+  let!(:gateway) { create :credit_card_payment_method }
   let!(:order) { create(:completed_order_with_totals, number: 'R9999999') }
   let(:pending_case_insensitive) { /pending/i }
 

@@ -408,7 +408,7 @@ RSpec.describe SolidusPaypalBraintree::Gateway do
       let(:order) { FactoryBot.create :order, user: user, state: "complete", completed_at: Time.current }
       let(:gateway) { new_gateway.tap(&:save!) }
 
-      let(:other_payment_method) { FactoryBot.create(:payment_method) }
+      let(:other_payment_method) { FactoryBot.create(:credit_card_payment_method) }
 
       let(:source_without_profile) do
         SolidusPaypalBraintree::Source.create!(

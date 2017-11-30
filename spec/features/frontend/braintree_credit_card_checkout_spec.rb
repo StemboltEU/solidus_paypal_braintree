@@ -3,7 +3,7 @@ require 'spree/testing_support/order_walkthrough'
 
 shared_context "checkout setup" do
   let(:braintree) { new_gateway(active: true) }
-  let!(:gateway) { create :payment_method }
+  let!(:gateway) { create :credit_card_payment_method }
 
   before(:each) do
     braintree.save!
