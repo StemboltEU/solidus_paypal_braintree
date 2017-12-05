@@ -8,7 +8,7 @@ class SolidusPaypalBraintree::CheckoutsController < Spree::CheckoutController
   ].freeze
 
   def update
-    @payment = Spree::PaymentCreate.new(@order, payment_params).build
+    @payment = @order.payments.new(payment_params)
 
     if @payment.save
       render plain: "ok"
