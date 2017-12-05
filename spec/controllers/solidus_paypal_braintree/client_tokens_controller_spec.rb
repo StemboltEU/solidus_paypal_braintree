@@ -13,7 +13,7 @@ describe SolidusPaypalBraintree::ClientTokensController do
 
     context 'with a payment method id' do
       subject(:response) do
-        post :create, params: { token: user.spree_api_key }
+        post :create, { token: user.spree_api_key }
       end
 
       it "returns a client token", aggregate_failures: true do
@@ -26,7 +26,7 @@ describe SolidusPaypalBraintree::ClientTokensController do
 
       context 'with a payment method id' do
         subject(:response) do
-          post :create, params: { token: user.spree_api_key, payment_method_id: gateway.id }
+          post :create, { token: user.spree_api_key, payment_method_id: gateway.id }
         end
 
         it 'uses the selected gateway' do
