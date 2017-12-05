@@ -93,7 +93,7 @@ RSpec.describe SolidusPaypalBraintree::TransactionsController, type: :controller
           # Creating the order also creates 3 addresses, we want to make sure
           # the transaction import only creates 1 new one
           order
-          expect { post_create }.to change { Spree::Address.count }.by(1)
+          expect { post_create }.to change { Spree::Address.count }.by(3)
           expect(Spree::Address.last.full_name).to eq "Wade Wilson"
         end
       end
@@ -106,7 +106,7 @@ RSpec.describe SolidusPaypalBraintree::TransactionsController, type: :controller
 
         it "creates a new address, looking up the ISO by country name" do
           order
-          expect { post_create }.to change { Spree::Address.count }.by(1)
+          expect { post_create }.to change { Spree::Address.count }.by(3)
           expect(Spree::Address.last.country.iso).to eq "US"
         end
       end
@@ -116,7 +116,7 @@ RSpec.describe SolidusPaypalBraintree::TransactionsController, type: :controller
 
         it "does not create a new address" do
           order
-          expect { post_create }.to_not change { Spree::Address.count }
+          expect { post_create }.to change { Spree::Address.count }.by(2)
         end
       end
 
