@@ -127,7 +127,7 @@ describe SolidusPaypalBraintree::TransactionImport do
         it 'is complete and capturable', aggregate_failures: true,
           vcr: { cassette_name: 'transaction/import/valid/capture' } do
           subject
-          order.complete
+          order.next
 
           expect(order).to be_complete
           expect(order.payments.first).to be_pending
