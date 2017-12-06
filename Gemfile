@@ -18,7 +18,7 @@ group :development, :test do
   gem 'ffaker'
 
   gem 'pg'
-  gem 'mysql2'
+  gem 'mysql2', '~> 0.3.13'
 end
 
 gemspec
