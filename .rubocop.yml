@@ -216,6 +216,7 @@ Metrics/BlockNesting:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*.rb'
+    - 'lib/solidus_paypal_braintree/factories.rb'
 
 Metrics/ClassLength:
   Enabled: false

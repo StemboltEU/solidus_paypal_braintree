@@ -1,4 +1,4 @@
-class AddBraintreeConfigurationToStores < SolidusSupport::Migration[4.2]
+class AddBraintreeConfigurationToStores < ActiveRecord::Migration
   def up
     Spree::Store.all.each(&:create_braintree_configuration)
   end

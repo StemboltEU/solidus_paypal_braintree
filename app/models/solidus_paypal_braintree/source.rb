@@ -1,12 +1,12 @@
 module SolidusPaypalBraintree
-  class Source < SolidusSupport.payment_source_parent_class
+  class Source < Spree::Base
     include RequestProtection
 
     PAYPAL = "PayPalAccount"
     APPLE_PAY = "ApplePayCard"
     CREDIT_CARD = "CreditCard"
 
-    belongs_to :user, class_name: Spree::UserClassHandle.new
+    belongs_to :user, class_name: Spree.user_class
     belongs_to :payment_method, class_name: 'Spree::PaymentMethod'
     has_many :payments, as: :source, class_name: "Spree::Payment"
 

@@ -1,4 +1,4 @@
-class CreateSolidusPaypalBraintreeSources < SolidusSupport::Migration[4.2]
+class CreateSolidusPaypalBraintreeSources < ActiveRecord::Migration
   def change
     create_table :solidus_paypal_braintree_sources do |t|
       t.string :nonce
@@ -11,6 +11,6 @@ class CreateSolidusPaypalBraintreeSources < SolidusSupport::Migration[4.2]
       t.timestamps null: false
     end
 
-    add_foreign_key :solidus_paypal_braintree_sources, :spree_payment_methods, column: :payment_method_id
+    # add_foreign_key :solidus_paypal_braintree_sources, :spree_payment_methods, column: :payment_method_id
   end
 end

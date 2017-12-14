@@ -1,4 +1,4 @@
-require 'active_merchant/network_connection_retries'
+require 'active_utils/common/network_connection_retries'
 
 module SolidusPaypalBraintree
   module RequestProtection

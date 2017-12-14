@@ -3,23 +3,23 @@ require 'spree/testing_support/order_walkthrough'
 
 shared_context "checkout setup" do
   let(:braintree) { new_gateway(active: true) }
-  let!(:gateway) { create :payment_method }
+  let!(:gateway) { create :credit_card_payment_method }
 
   before(:each) do
     braintree.save!
-    create(:store, payment_methods: [gateway, braintree]).tap do |store|
+    create(:store).tap do |store|
       store.braintree_configuration.update!(credit_card: true)
     end
     order = OrderWalkthrough.up_to(:delivery)
 
     user = create(:user)
     order.user = user
-    order.number = "R9999999"
+    order.update(number: "R9999999")
     recalculate(order)
 
     allow_any_instance_of(Spree::CheckoutController).to receive_messages(current_order: order)
     allow_any_instance_of(Spree::CheckoutController).to receive_messages(try_spree_current_user: user)
-    allow_any_instance_of(Spree::Payment).to receive(:number) { "123ABC" }
+    allow_any_instance_of(Spree::Payment).to receive(:identifier) { "123ABC" }
     allow_any_instance_of(SolidusPaypalBraintree::Source).to receive(:nonce) { "fake-valid-nonce" }
 
     visit spree.checkout_state_path(:delivery)

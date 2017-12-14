@@ -1,4 +1,4 @@
-class AddNotNullConstraintToSourcesPaymentType < SolidusSupport::Migration[4.2]
+class AddNotNullConstraintToSourcesPaymentType < ActiveRecord::Migration
   def change
     reversible do |dir|
       dir.up do

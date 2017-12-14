@@ -2,6 +2,9 @@ module SolidusPaypalBraintree::GatewayHelpers
   def new_gateway(opts = {})
     SolidusPaypalBraintree::Gateway.new({
       name: "Braintree",
+      display_on: 'both',
+      active: true,
+      environment: 'test',
       preferences: {
         environment: 'sandbox',
         public_key:  'mwjkkxwcp32ckhnf',

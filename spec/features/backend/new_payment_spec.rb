@@ -2,14 +2,14 @@ require 'spec_helper'
 require 'spree/testing_support/order_walkthrough'
 
 shared_context "checkout setup" do
-  let(:braintree) { new_gateway(active: true) }
-  let!(:gateway) { create :payment_method }
+  let(:braintree) { new_gateway(display_on: 'back_end') }
+  let!(:gateway) { create :credit_card_payment_method }
   let!(:order) { create(:completed_order_with_totals, number: 'R9999999') }
   let(:pending_case_insensitive) { /pending/i }
 
   before(:each) do
     braintree.save!
-    create(:store, payment_methods: [gateway, braintree]).tap do |store|
+    create(:store).tap do |store|
       store.braintree_configuration.update!(credit_card: true)
     end
 
@@ -17,7 +17,7 @@ shared_context "checkout setup" do
 
     # Order and payment numbers must be identical between runs to re-use the VCR
     # cassette
-    allow_any_instance_of(Spree::Payment).to receive(:number) { "123ABC" }
+    allow_any_instance_of(Spree::Payment).to receive(:identifier) { "123ABC" }
   end
 
   around(:each) do |example|

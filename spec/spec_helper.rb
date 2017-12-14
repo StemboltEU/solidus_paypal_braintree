@@ -19,7 +19,8 @@ ENV['RAILS_ENV'] = 'test'
 require File.expand_path('../dummy/config/environment.rb', __FILE__)
 
 # Requires factories and other useful helpers defined in spree_core.
-require "solidus_support/extension/feature_helper"
+require 'rails_helper'
+require 'feature_helper'
 require 'spree/testing_support/controller_requests'
 
 require 'vcr'
@@ -71,4 +72,15 @@ RSpec.configure do |config|
   config.before(:each, type: :feature, js: true) do |ex|
     Capybara.current_driver = ex.metadata[:driver] || :poltergeist
   end
+
+  config.filter_run focus: true
+  config.run_all_when_everything_filtered = true
+
+  config.mock_with :rspec
+  config.color = true
+
+  config.fail_fast = ENV['FAIL_FAST'] || false
+  config.order = 'random'
+
+  Kernel.srand config.seed
 end

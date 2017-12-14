@@ -56,7 +56,7 @@ RSpec.describe SolidusPaypalBraintree::Gateway do
 
     before do
       order.update(number: "ORDER0")
-      payment.update(number: "PAYMENT0")
+      payment.update(identifier: "PAYMENT0")
     end
 
     let(:payment) do
@@ -77,7 +77,7 @@ RSpec.describe SolidusPaypalBraintree::Gateway do
       order.next!
       expect(order.state).to eq "confirm"
 
-      order.complete!
+      order.next!
       expect(order.state).to eq "complete"
 
       expect(order.outstanding_balance).to eq 0.0
@@ -408,7 +408,7 @@ RSpec.describe SolidusPaypalBraintree::Gateway do
       let(:order) { FactoryBot.create :order, user: user, state: "complete", completed_at: Time.current }
       let(:gateway) { new_gateway.tap(&:save!) }
 
-      let(:other_payment_method) { FactoryBot.create(:payment_method) }
+      let(:other_payment_method) { FactoryBot.create(:credit_card_payment_method) }
 
       let(:source_without_profile) do
         SolidusPaypalBraintree::Source.create!(

@@ -17,10 +17,10 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", 'LICENSE', 'Rakefile', 'README.md']
   s.test_files = Dir['test/**/*']
 
-  s.add_dependency "solidus", ['>= 1.0', '< 3']
-  s.add_dependency "solidus_support", '>= 0.1.3'
-  s.add_dependency "braintree", '~> 2.65'
-  s.add_dependency 'activemerchant', '~> 1.48'
+  s.add_dependency 'spree_core', '~> 2.4.0'
+  s.add_dependency 'braintree', '~> 2.65'
+  s.add_dependency 'activemerchant', '~> 1.44'
+  s.add_dependency 'active_utils'
 
   s.add_development_dependency 'capybara'
   s.add_development_dependency 'capybara-screenshot'

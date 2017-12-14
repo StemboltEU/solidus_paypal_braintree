@@ -5,7 +5,7 @@
     <div class="alpha six columns">
       <dl>
         <dt><%= Spree.t(:identifier) %>:</dt>
-        <dd><%= payment.number %></dd>
+        <dd><%= payment.identifier %></dd>
 
         <dt><%= Spree.t(:response_code) %>:</dt>
         <dd><%= braintree_transaction_link(payment) %></dd>
